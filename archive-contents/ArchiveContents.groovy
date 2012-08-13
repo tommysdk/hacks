@@ -42,7 +42,7 @@ class ArchiveContents {
 
     Archive archive = null
     try {
-      archive = ShrinkWrap.create(ZipImporter.class, "archive.ear")
+      archive = ShrinkWrap.create(ZipImporter.class, args[0])
               .importFrom(path)
               .as(resolveType(path.absolutePath))
     } catch (ArchiveImportException aie) {
