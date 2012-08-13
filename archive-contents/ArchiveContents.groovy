@@ -25,9 +25,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive
 /**
  * @author Tommy Tynjä
  */
-@Grab(group='org.jboss.shrinkwrap', module='shrinkwrap-api', version='1.0.0')
-@Grab(group='org.jboss.shrinkwrap', module='shrinkwrap-impl-base', version='1.0.0')
-@Grab(group='org.jboss.shrinkwrap', module='shrinkwrap-spi', version='1.0.0')
+@Grab(group='org.jboss.shrinkwrap', module='shrinkwrap-api', version='1.1.0-alpha-3')
+@Grab(group='org.jboss.shrinkwrap', module='shrinkwrap-impl-base', version='1.1.0-alpha-3')
+@Grab(group='org.jboss.shrinkwrap', module='shrinkwrap-spi', version='1.1.0-alpha-3')
 class ArchiveContents {
   static void main(String[] args) {
     if (args.length < 1) {
