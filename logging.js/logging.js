@@ -33,10 +33,13 @@ http.createServer(function (req, res) {
 	for (var queryParam in query) {
 		if (!(path in statusMap)) {
 			statusMap[path] = new Array();
+			statusMap[path][0] = new Array();
 		}
-		statusMap[path][0] = queryParam;
-		statusMap[path][1] = query[queryParam];
-		statusMap[path][2] = new Date();
+		var nextArrayIndex = statusMap[path].length;
+		statusMap[path][nextArrayIndex] = new Array();
+		statusMap[path][nextArrayIndex][0] = queryParam;
+		statusMap[path][nextArrayIndex][1] = query[queryParam];
+		statusMap[path][nextArrayIndex][2] = new Date();
 	}
 
 	res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -44,7 +47,8 @@ http.createServer(function (req, res) {
 	response += format('PATH', uiColumnLength) + ' ' + format('KEY', uiColumnLength) + ' ' + format('VALUE', uiColumnLength) + ' TIMESTAMP\n' 
 	for (var key in statusMap) {
 		if (statusMap.hasOwnProperty(key)) {
-			response += format(key, uiColumnLength) + ' ' + format(statusMap[key][0], uiColumnLength) + ' ' + format(statusMap[key][1], uiColumnLength) + ' ' + format(statusMap[key][2], uiColumnLength) + '\n';
+			var lastIndex = statusMap[key].length - 1;
+			response += format(key, uiColumnLength) + ' ' + format(statusMap[key][lastIndex][0], uiColumnLength) + ' ' + format(statusMap[key][lastIndex][1], uiColumnLength) + ' ' + format(statusMap[key][lastIndex][2], uiColumnLength) + '\n';
 		}
 	}
 	res.end(response);
